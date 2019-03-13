@@ -62,19 +62,19 @@ public class BidirectionalTransformation3D extends UnidirectionalTransformation3
 
     public static BidirectionalTransformation3D rotationX(double thetax) {
         UnidirectionalTransformation3D doTrans = UnidirectionalTransformation3D.rotationX(thetax);
-        UnidirectionalTransformation3D undoTrans = UnidirectionalTransformation3D.rotationX(thetax);
+        UnidirectionalTransformation3D undoTrans = UnidirectionalTransformation3D.rotationX(-thetax);
         return new BidirectionalTransformation3D(doTrans, undoTrans);
     }
 
     public static BidirectionalTransformation3D rotationY(double thetay) {
         UnidirectionalTransformation3D doTrans = UnidirectionalTransformation3D.rotationY(thetay);
-        UnidirectionalTransformation3D undoTrans = UnidirectionalTransformation3D.rotationY(thetay);
+        UnidirectionalTransformation3D undoTrans = UnidirectionalTransformation3D.rotationY(-thetay);
         return new BidirectionalTransformation3D(doTrans, undoTrans);
     }
 
     public static BidirectionalTransformation3D rotationZ(double thetaz) {
         UnidirectionalTransformation3D doMatrix = UnidirectionalTransformation3D.rotationZ(thetaz);
-        UnidirectionalTransformation3D undoMatrix = UnidirectionalTransformation3D.rotationZ(thetaz);
+        UnidirectionalTransformation3D undoMatrix = UnidirectionalTransformation3D.rotationZ(-thetaz);
         return new BidirectionalTransformation3D(doMatrix, undoMatrix);
     }
 
@@ -97,7 +97,7 @@ public class BidirectionalTransformation3D extends UnidirectionalTransformation3
     }
 
     public BidirectionalTransformation3D compose(BidirectionalTransformation3D t) {
-        doMatrix = t.doMatrix.multiplied(doMatrix);
+        super.compose(t);
         undoMatrix.multiply(t.undoMatrix);
         return this;
     }
