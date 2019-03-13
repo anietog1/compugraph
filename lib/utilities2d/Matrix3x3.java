@@ -1,4 +1,4 @@
-package utilities3d;
+package utilities2d;
 
 import java.util.Arrays;
 
@@ -44,7 +44,7 @@ public class Matrix3x3 {
         double y = matrix[1][0] * p.x + matrix[1][1] * p.y + matrix[1][2];
         double w = matrix[3][0] * p.x + matrix[3][1] * p.y + matrix[3][2];
 
-        return new Point2D(x, y, z, w);
+        return new Point2D(x, y, w);
     }
 
     public Matrix3x3 multiply(Matrix3x3 m) {

@@ -1,4 +1,4 @@
-package utilities3d;
+package utilities2d;
 
 public class BidirectionalTransformation2D extends UnidirectionalTransformation2D {
     public Matrix3x3 undoMatrix;
