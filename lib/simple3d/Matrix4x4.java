@@ -43,6 +43,18 @@ public class Matrix4x4 {
         return result;
     }
 
+    public Matrix4x4 minus(Matrix4x4 m) {
+        Matrix4x4 result = Matrix4x4.zero();
+
+        for (int i = 0; i < 4; ++i) {
+            for (int j = 0; j < 4; ++j) {
+                result.matrix[i][j] = matrix[i][j] - m.matrix[i][j];
+            }
+        }
+
+        return result;
+    }
+
     public Vector3 times(Vector3 p) {
         double x = matrix[0][0] * p.x + matrix[0][1] * p.y + matrix[0][2] * p.z + matrix[0][3];
         double y = matrix[1][0] * p.x + matrix[1][1] * p.y + matrix[1][2] * p.z + matrix[1][3];
