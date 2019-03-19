@@ -1,4 +1,4 @@
-package simple3d;
+package utilities3d;
 
 public final class Vector3 {
     public final double x, y, z;
@@ -23,7 +23,6 @@ public final class Vector3 {
 
     public static Vector3 y() {
         return new Vector3(0, 1, 0);
-
     }
 
     public static Vector3 z() {
@@ -31,7 +30,7 @@ public final class Vector3 {
     }
 
     public double magnitude() {
-        return Math.sqrt(x * x + y * y + z * z);
+        return Math.sqrt(this.dot(this));
     }
 
     public Vector3 normalized() {
@@ -41,10 +40,6 @@ public final class Vector3 {
 
     public Vector3 plus(Vector3 p) {
         return new Vector3(x + p.x, y + p.y, z + p.z);
-    }
-
-    public Vector3 minus(Vector3 p) {
-        return new Vector3(x - p.x, y - p.y, z - p.z);
     }
 
     public Vector3 times(double n) {

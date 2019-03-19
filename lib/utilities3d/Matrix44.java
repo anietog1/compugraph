@@ -1,15 +1,15 @@
-package simple3d;
+package utilities3d;
 
 import java.util.Arrays;
 
-public class Matrix4x4 {
+public class Matrix44 {
     public final double matrix[][];
 
-    public Matrix4x4(double matrix[][]) {
+    public Matrix44(double matrix[][]) {
         this.matrix = matrix;
     }
 
-    public static Matrix4x4 zero() {
+    public static Matrix44 zero() {
         double matrix[][] = {
             {0, 0, 0, 0},
             {0, 0, 0, 0},
@@ -17,10 +17,10 @@ public class Matrix4x4 {
             {0, 0, 0, 0}
         };
 
-        return new Matrix4x4(matrix);
+        return new Matrix44(matrix);
     }
 
-    public static Matrix4x4 identity() {
+    public static Matrix44 identity() {
         double matrix[][] = {
             {1, 0, 0, 0},
             {0, 1, 0, 0},
@@ -28,27 +28,15 @@ public class Matrix4x4 {
             {0, 0, 0, 1}
         };
 
-        return new Matrix4x4(matrix);
+        return new Matrix44(matrix);
     }
 
-    public Matrix4x4 plus(Matrix4x4 m) {
-        Matrix4x4 result = Matrix4x4.zero();
+    public Matrix44 plus(Matrix44 m) {
+        Matrix44 result = Matrix44.zero();
 
         for (int i = 0; i < 4; ++i) {
             for (int j = 0; j < 4; ++j) {
                 result.matrix[i][j] = matrix[i][j] + m.matrix[i][j];
-            }
-        }
-
-        return result;
-    }
-
-    public Matrix4x4 minus(Matrix4x4 m) {
-        Matrix4x4 result = Matrix4x4.zero();
-
-        for (int i = 0; i < 4; ++i) {
-            for (int j = 0; j < 4; ++j) {
-                result.matrix[i][j] = matrix[i][j] - m.matrix[i][j];
             }
         }
 
@@ -64,8 +52,8 @@ public class Matrix4x4 {
         return new Vector3(x, y, z, w);
     }
 
-    public Matrix4x4 times(Matrix4x4 m) {
-        Matrix4x4 result = Matrix4x4.zero();
+    public Matrix44 times(Matrix44 m) {
+        Matrix44 result = Matrix44.zero();
 
         for (int i = 0; i < 4; ++i) {
             for (int j = 0; j < 4; ++j) {
@@ -78,8 +66,8 @@ public class Matrix4x4 {
         return result;
     }
 
-    public Matrix4x4 times(double n) {
-        Matrix4x4 result = Matrix4x4.zero();
+    public Matrix44 times(double n) {
+        Matrix44 result = Matrix44.zero();
 
         for (int i = 0; i < 4; ++i) {
             for (int j = 0; j < 4; ++j) {
@@ -90,7 +78,7 @@ public class Matrix4x4 {
         return result;
     }
 
-    public static Matrix4x4 translate(double dx, double dy, double dz) {
+    public static Matrix44 translate(double dx, double dy, double dz) {
         double matrix[][] = {
             {1, 0, 0, dx},
             {0, 1, 0, dy},
@@ -98,10 +86,10 @@ public class Matrix4x4 {
             {0, 0, 0, 1}
         };
 
-        return new Matrix4x4(matrix);
+        return new Matrix44(matrix);
     }
 
-    public static Matrix4x4 scale(double sx, double sy, double sz) {
+    public static Matrix44 scale(double sx, double sy, double sz) {
         double matrix[][] = {
             {sx, 0, 0, 0},
             {0, sy, 0, 0},
@@ -109,10 +97,10 @@ public class Matrix4x4 {
             {0, 0, 0, 1}
         };
 
-        return new Matrix4x4(matrix);
+        return new Matrix44(matrix);
     }
 
-    public static Matrix4x4 rotateX(double dtheta) {
+    public static Matrix44 rotateX(double dtheta) {
         double matrix[][] = {
             {1, 0, 0, 0},
             {0, Math.cos(dtheta), -Math.sin(dtheta), 0},
@@ -120,10 +108,10 @@ public class Matrix4x4 {
             {0, 0, 0, 1}
         };
 
-        return new Matrix4x4(matrix);
+        return new Matrix44(matrix);
     }
 
-    public static Matrix4x4 rotateY(double dtheta) {
+    public static Matrix44 rotateY(double dtheta) {
         double matrix[][] = {
             {Math.cos(dtheta), 0, Math.sin(dtheta), 0},
             {0, 1, 0, 0},
@@ -131,10 +119,10 @@ public class Matrix4x4 {
             {0, 0, 0, 1}
         };
 
-        return new Matrix4x4(matrix);
+        return new Matrix44(matrix);
     }
 
-    public static Matrix4x4 rotateZ(double dtheta) {
+    public static Matrix44 rotateZ(double dtheta) {
         double matrix[][] = {
             {Math.cos(dtheta), -Math.sin(dtheta), 0, 0},
             {Math.sin(dtheta), Math.cos(dtheta), 0, 0},
@@ -142,10 +130,10 @@ public class Matrix4x4 {
             {0, 0, 0, 1}
         };
 
-        return new Matrix4x4(matrix);
+        return new Matrix44(matrix);
     }
 
-    public static Matrix4x4 perspective(double d) {
+    public static Matrix44 perspective(double d) {
         double matrix[][] = {
             {1, 0, 0, 0},
             {0, 1, 0, 0},
@@ -153,10 +141,10 @@ public class Matrix4x4 {
             {0, 0, 1 / d, 0}
         };
 
-        return new Matrix4x4(matrix);
+        return new Matrix44(matrix);
     }
 
-    public static Matrix4x4 lookAt(Vector3 from, Vector3 to, Vector3 orientation) {
+    public static Matrix44 lookAt(Vector3 from, Vector3 to, Vector3 orientation) {
         Vector3 n = to.minus(from).normalized();
         Vector3 u = orientation.cross(n).normalized();
         Vector3 v = n.cross(u);
@@ -168,11 +156,11 @@ public class Matrix4x4 {
             {0, 0, 0, 1}
         };
 
-        return new Matrix4x4(matrix);
+        return new Matrix44(matrix);
     }
 
     @Override
     public String toString() {
-        return "Matrix4x4{" + "matrix=" + Arrays.deepToString(matrix) + '}';
+        return "Matrix44{" + "matrix=" + Arrays.deepToString(matrix) + '}';
     }
 }
