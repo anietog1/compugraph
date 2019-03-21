@@ -97,8 +97,8 @@ public class Matrix33 {
 
     public static Matrix33 rotate(double theta) {
         double matrix[][] = {
-            {Math.cos(dtheta), -Math.sin(dtheta), 0},
-            {Math.sin(dtheta), Math.cos(dtheta), 0},
+            {Math.cos(theta), -Math.sin(theta), 0},
+            {Math.sin(theta), Math.cos(theta), 0},
             {0, 0, 1}
         };
 
