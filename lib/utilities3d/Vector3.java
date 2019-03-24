@@ -52,7 +52,7 @@ public final class Vector3 {
 
     public Vector3 cross(Vector3 p) {
         double tmpX = y * p.z - z * p.y;
-        double tmpY = x * p.z - z * p.x;
+        double tmpY = z * p.x - x * p.z;
         double tmpZ = x * p.y - y * p.x;
 
         return new Vector3(tmpX, tmpY, tmpZ);

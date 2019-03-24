@@ -145,7 +145,7 @@ public class Matrix44 {
     }
 
     public static Matrix44 lookAt(Vector3 from, Vector3 to, Vector3 orientation) {
-        Vector3 n = to.plus(from.times(-1)).normalized();
+        Vector3 n = from.plus(to.times(-1)).normalized();
         Vector3 u = orientation.cross(n).normalized();
         Vector3 v = n.cross(u);
 
